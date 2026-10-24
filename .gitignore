@@ -1,0 +1,13 @@
+# Local inputs and private review material must never be committed.
+portfolio-inputs/
+private/
+.env
+.env.*
+*.pem
+*.key
+# Proprietary simulation outputs and project archives: add reviewed assets explicitly.
+*.zip
+*.tdr
+*.vproc
+*.vmpd
+*.zam

@@ -1,0 +1,9 @@
+file,description,interpreted_x_quantity,interpreted_y_quantity,scale,interpretation_basis,printed_axis_labels,units_and_normalization
+graphs/transfer-linear.png,Transfer characteristic,Gate-voltage sweep,Drain total current,Linear,Source filename and current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/transfer-log.png,Transfer characteristic,Gate-voltage sweep,Drain total current,Logarithmic Y,Source filename and current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/output-linear.png,Output characteristic,Drain-voltage sweep,Drain total current,Linear,Source filename and current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/output-log.png,Output characteristic,Drain-voltage sweep,Drain total current,Logarithmic Y,Source filename and current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/transconductance.png,Transconductance,Gate-voltage sweep,Derivative of drain current,Linear,Source filename and prime-marked current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/output-conductance.png,Output conductance,Drain-voltage sweep,Derivative of drain current,Linear,Source filename and prime-marked current legend,X / Y,Not specified in image; not verified for quantitative comparison
+graphs/capacitance-low-frequency.png,Gate capacitance - LF100 label,Gate-voltage sweep,"c(g,g)",Linear,"Source filename and c(g,g) legend",X / Y,Not specified in image; not verified for quantitative comparison
+graphs/capacitance-high-frequency.png,Gate capacitance - 1MHz label,Gate-voltage sweep,"c(g,g)",Linear,"Source filename and c(g,g) legend",X / Y,Not specified in image; not verified for quantitative comparison
