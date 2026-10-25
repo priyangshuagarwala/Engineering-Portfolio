@@ -66,6 +66,30 @@ Conceptually, `im2col` rearranges overlapping image windows into a matrix suitab
 
 A systolic array moves values between neighboring processing elements over successive clocks. Skew staggers input lanes so each activation meets its intended partial sum. Different output columns naturally encounter different horizontal travel delays; deskew compensates before presenting a group of outputs together. The exact cycle schedule must be checked against RTL waveforms rather than inferred from this conceptual explanation.
 
+## Theory: parallelism, data reuse and performance
+
+### Spatial computing and dataflow
+
+A serial dot-product engine reuses one arithmetic unit over time. A systolic architecture distributes that computation across processing elements: different stages work on different operands simultaneously while values move through regular neighbor-to-neighbor connections. The schedule matters as much as the arithmetic, because a correct product must meet the correct partial sum.
+
+The main benefit is local reuse. A value forwarded between PEs can contribute to several operations without being fetched from external memory for each one. In **weight-stationary** operation, each PE retains a weight while activations and partial sums move; in **output-stationary** operation, a PE retains a partial output while operands arrive. These are data-placement choices, not different definitions of multiplication. [Kung, *Why Systolic Architectures?*](https://www.eecs.harvard.edu/~htk/publication/1982-kung-why-systolic-architecture.pdf)
+
+### Latency is different from throughput
+
+- **Latency:** elapsed cycles from an accepted input transaction to its corresponding valid result. Define whether weight loading and input capture are included.
+- **Initiation interval:** cycles between accepting successive independent transactions.
+- **Throughput:** useful completed results per unit time, measured over a stated interval.
+
+Pipelining can overlap computations without making an individual result immediate. Filling the array, draining partial sums, loading weights and waiting for input data all affect end-to-end behavior. Consequently, a count of PEs is not a measured speedup. Published accelerator studies also distinguish arithmetic capacity from performance limited by operand movement and workload utilization. [Jouppi et al., *In-Datacenter Performance Analysis of a Tensor Processing Unit*](https://www.cs.cmu.edu/~18742/papers/Jouppi2017.pdf)
+
+### Applying the distinction to this demonstration
+
+The documented workload contains eight output positions and two active kernels. Each output is an eight-term dot product, so it contains **8 × 2 × 8 = 128 useful product contributions**. This is a workload count, not a cycle count. Zero-weight columns can execute arithmetic without adding useful work for these two kernels.
+
+For an illustrative array with `P` active MAC units, clock frequency `f` and one MAC accepted per unit per cycle, the arithmetic ceiling is `P × f` MAC/s. Counting a multiplication and addition separately doubles the operation count; the convention must be stated. Actual useful throughput also depends on occupancy, stalls and transaction overhead. This repository does not yet provide the timing trace needed to calculate that rate for the implementation.
+
+A meaningful future report should therefore pair a correct-output check with total transaction cycles, first-result latency, initiation interval and the number of useful outputs. This connects the mathematical work to observed RTL behavior without confusing theoretical capacity with measured performance.
+
 ## Module responsibilities
 
 | Module | Responsibility | Evidence boundary |

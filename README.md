@@ -7,7 +7,7 @@ Projects in digital VLSI design, embedded systems, semiconductor process modelin
 | Project | Focus | Status |
 | --- | --- | --- |
 | [8×8 Systolic Array](systolic-array/README.md) | Verilog architecture and fixed convolution demonstration | Source review; independent verification pending |
-| [Cleanroom Safety Alarm Prototype](cleanroom/README.md) | STM32 bare-metal sensing and LCD integration | Prototype; sensor validation in progress |
+| [Cleanroom Safety Alarm Prototype](cleanroom/README.md) | STM32 bare-metal sensing and LCD integration | Completed educational prototype |
 | [SEMulator3D Process Modeling](semulator3d/README.md) | Educational metallization and diffusion studies | Assignment layouts and simulation studies; documentation in progress |
 | [NSFET Research](nsfet/README.md) | Nanosheet FET device simulation | Ongoing; selected terminal-characteristic graphs |
 
@@ -39,4 +39,4 @@ Project pages explain what each artifact shows and what it does not establish. S
 - A path-free summary of the Assignment 1 process-parameter sweep, including failed rule checks.
 - Detailed project explanations and status notes.
 
-Systolic-array code redistribution awaits contributor/permission confirmation. Cleanroom firmware release awaits the final tested source. The portfolio currently links the original systolic source for provenance.
+Systolic-array code redistribution awaits contributor/permission confirmation. Cleanroom project completion has been confirmed; its final firmware and supporting test records are not yet included in this repository. The portfolio currently links the original systolic source for provenance.

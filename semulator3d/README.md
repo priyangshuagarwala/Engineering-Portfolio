@@ -25,6 +25,40 @@ The inverter is a **layout exercise**, not an electrically verified standard cel
 
 Earlier project notes report completion of conventional-metallization and damascene reference runs and saving a process file. They also describe diffusion visualization and checking whether material inputs support a proposed comparison. Those later notes are separate from the newly reviewed Assignment 1 and Assignment 2 archives. The relevant later-assignment sources were not validated in this review; the comparative study and final report remain in progress. FinFET practical work is not presented as completed.
 
+## Process theory behind the models
+
+The following concepts explain how to interpret the coursework. They are general process principles, not additional results from these assignments.
+
+### STI: separating neighboring active regions
+
+Shallow trench isolation places insulating material in etched trenches between active silicon regions. A simplified sequence is **define the trench → etch → form a liner → fill with oxide → planarize**. The liner and fill are distinct process steps; a filled trench must also leave a suitable surface for later fabrication. A cross-section is therefore useful for examining both the isolation region and its boundary with active silicon.
+
+**Chemical-mechanical planarization (CMP)** removes excess material while reducing surface-height differences. The process must clear unwanted overburden without excessive removal of the stop layer or isolation material. Pattern density and feature size can affect polishing, so a locally attractive cross-section does not establish uniform planarization across a layout. This is why material thickness, residual topography and removal margins matter alongside the trench's nominal shape. See the Applied Materials/MIT paper, [Planarization and Integration of Shallow Trench Isolation](https://boning.mit.edu/wp-content/uploads/2022/11/Planarization-and-Integration-of-Shallow-Trench-Isolation.pdf).
+
+### Lithography and etch: from mask shapes to three-dimensional features
+
+A mask specifies an intended pattern; lithography defines the patterned opening, and etching transfers it into the underlying material. Etch removes selected materials and determines a feature's depth and profile. Conductor and dielectric etches serve different parts of the fabrication flow. [Lam Research's etch overview](https://www.lamresearch.com/products/our-processes/etch/) explains this distinction.
+
+For interpreting this assignment, **dimensional bias** represents a modeled change from the intended lateral size, whereas a **lateral-etch parameter** controls a different part of profile evolution. They should not be treated as interchangeable knobs. An opening's top width alone cannot describe its bottom width, sidewall shape or eventual contact area. The sign convention and parameter definition must come from the selected process step rather than from the parameter name alone.
+
+### Metallization: subtractive versus damascene
+
+In a subtractive metal flow, a deposited metal layer is patterned and unwanted metal is etched away. In a damascene flow, openings are first made in a dielectric, then filled with metal; excess metal is removed to leave embedded wiring. Dual damascene combines a via and a wiring trench in an integrated fill scheme. A **line** routes a signal laterally, while a **via** connects wiring levels vertically.
+
+This ordering changes what must be controlled: metal-etch profiles in one approach, and dielectric openings, fill and planarization in the other. Metal, barrier/liner and dielectric occupy the available cross-section together, so the drawn opening is not automatically the electrically conducting area. These distinctions provide context for the coursework; no advanced integration scheme is claimed here. See [imec's explanation of subtractive and damascene integration](https://www.imec-int.com/en/articles/semi-damascene-metallization-inflection-point-back-end-line-processing).
+
+### Variation and verification: asking the right question
+
+A parameter sweep asks how a measured output changes when selected inputs change. For the supplied four-run experiment, compare via-bottom dimension and contact area alongside the line-width and insulation checks. A larger contact area is not an improvement if another required constraint fails. Two varied inputs can also interact, so changing one parameter in isolation may not explain every result.
+
+Keep three questions separate:
+
+1. **Geometry:** did the modeled sequence produce the intended shapes and material separation?
+2. **Connectivity and rules:** are the intended nets connected, and are the specified checks satisfied?
+3. **Electrical behavior:** does an appropriately extracted or simulated circuit meet its operating requirements?
+
+The recorded experiment supports a limited geometric comparison. Four parameter combinations do not establish a manufacturing distribution, yield prediction or complete process window. Those conclusions would require justified parameter ranges, calibrated models, appropriate sampling and separate validation.
+
 ## What this work demonstrates
 
 - Connecting mask/layout information with process-model inputs and inspecting 3D geometry.
